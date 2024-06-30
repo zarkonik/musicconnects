@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "475900074053",
+    "project_id": "musicconnects-e8e68",
+    "storage_bucket": "musicconnects-e8e68.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475900074053:android:49c017e33775b70d192b2c",
+        "android_client_info": {
+          "package_name": "com.example.musicconnects"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLLgU6AYZmcyL-093rk42rB5Vnu1sLo44"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
