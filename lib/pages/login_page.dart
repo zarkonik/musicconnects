@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_projects/auth/auth_service.dart';
+import 'package:flutter_projects/services/auth/auth_service.dart';
 import 'package:flutter_projects/components/my_button.dart';
 import 'package:flutter_projects/components/my_textfield.dart';
 

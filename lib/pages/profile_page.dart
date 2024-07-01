@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_projects/auth/auth_service.dart';
+import 'package:flutter_projects/services/auth/auth_service.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
