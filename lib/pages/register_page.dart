@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_projects/pages/pick_profile_image.dart';
 import 'package:flutter_projects/services/auth/auth_service.dart';
 import 'package:flutter_projects/components/my_button.dart';
 import 'package:flutter_projects/components/my_textfield.dart';
@@ -13,13 +14,15 @@ class RegisterPage extends StatelessWidget {
 
   RegisterPage({super.key, required this.onTap});
 
-  void register(BuildContext context) {
+  void register(BuildContext context) async {
     final _auth = AuthService();
 
     if (_pwController.text == _confirmPwController.text) {
       try {
-        _auth.signUpWithEmailPassword(
+        await _auth.signUpWithEmailPassword(
             _emailController.text, _pwController.text);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const PickProfileImage()));
       } catch (e) {
         showDialog(
             context: context,

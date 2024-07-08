@@ -48,14 +48,7 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   var currentIndex = 0;
 
-  final screens = [
-    LoginPage(),
-    Nearby(),
-    Encounters(),
-    Likes(),
-    Chat(),
-    Profile()
-  ];
+  final screens = [Nearby(), Encounters(), Likes(), Chat(), Profile()];
 
   @override
   Widget build(BuildContext context) {
@@ -72,10 +65,6 @@ class _FirstPageState extends State<FirstPage> {
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         items: const [
-          BottomNavigationBarItem(
-            label: 'Login',
-            icon: Icon(Icons.login),
-          ),
           BottomNavigationBarItem(
             label: 'Nearby',
             icon: Icon(Icons.place),

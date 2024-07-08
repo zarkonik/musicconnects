@@ -46,6 +46,7 @@ class Chat extends StatelessWidget {
 
   Widget _buildUserListItem(
       Map<String, dynamic> userData, BuildContext context) {
+    //context nam treba da bi npr. presli na neku stranicu
     if (userData["email"] != _authService.getCurrentuser()!.email) {
       return UserTile(
           text: userData["email"],
