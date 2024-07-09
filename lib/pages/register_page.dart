@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_projects/pages/pick_profile_image.dart';
+import 'package:flutter_projects/components/pick_profile_image.dart';
 import 'package:flutter_projects/services/auth/auth_service.dart';
 import 'package:flutter_projects/components/my_button.dart';
 import 'package:flutter_projects/components/my_textfield.dart';
@@ -19,8 +19,9 @@ class RegisterPage extends StatelessWidget {
 
     if (_pwController.text == _confirmPwController.text) {
       try {
-        await _auth.signUpWithEmailPassword(
+        final userCredential = await _auth.signUpWithEmailPassword(
             _emailController.text, _pwController.text);
+
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const PickProfileImage()));
       } catch (e) {
@@ -97,10 +98,10 @@ class RegisterPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already have an accont? "),
+                  const Text("Already have an accont? "),
                   GestureDetector(
                     onTap: onTap,
-                    child: Text(
+                    child: const Text(
                       "Login Now!",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),

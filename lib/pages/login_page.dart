@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_projects/main.dart';
 import 'package:flutter_projects/services/auth/auth_service.dart';
 import 'package:flutter_projects/components/my_button.dart';
 import 'package:flutter_projects/components/my_textfield.dart';
@@ -18,6 +19,8 @@ class LoginPage extends StatelessWidget {
     try {
       await authService.signInWithEmailPassword(
           _emailController.text, _pwController.text);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const FirstPage()));
     } catch (e) {
       showDialog(
         context: context,

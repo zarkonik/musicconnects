@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/components/pick_profile_image.dart';
 import 'package:flutter_projects/services/auth/login_or_register.dart';
 import 'package:flutter_projects/main.dart';
 
