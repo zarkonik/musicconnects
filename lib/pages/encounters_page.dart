@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/services/auth/auth_service.dart';
+import 'package:path/path.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 
 class Encounters extends StatefulWidget {
@@ -10,11 +13,28 @@ class Encounters extends StatefulWidget {
 
 class _EncountersState extends State<Encounters> {
   var currentIndex = 0;
+  final _auth = AuthService();
+  User? currentUser;
   final List<String> _images = [
     'images/borealis.jpg',
     'images/DayGZax.jpg',
     // Add more image URLs or paths as needed
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentuserFromFirestore();
+  }
+
+  void getCurrentuserFromFirestore() {
+    setState(() {
+      currentUser = _auth.getCurrentuser();
+    });
+
+    _images.add('images/${currentUser!.email}.jpg');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

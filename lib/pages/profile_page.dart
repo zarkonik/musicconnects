@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_projects/services/auth/auth_service.dart';
 import 'package:flutter_projects/services/auth/login_or_register.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Profile extends StatefulWidget {
   Profile({super.key});
@@ -12,6 +15,8 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   final _auth = AuthService();
+
+  File? profilnaSlika;
 
   FirebaseStorage _storage = FirebaseStorage.instance;
 
@@ -41,7 +46,12 @@ class _ProfileState extends State<Profile> {
     Reference storageRef =
         _storage.ref().child('user_images').child('${currentUser!.uid}.jpg');
 
-    profileImageUrl = await storageRef.getDownloadURL();
+    final appDocDir = await getApplicationDocumentsDirectory();
+    final filePath = "${appDocDir.absolute}/images/${currentUser.email}.jpg";
+    final file = File(filePath);
+
+    //profileImageUrl = await storageRef.getDownloadURL();
+    storageRef.writeToFile(file);
   }
 
   @override
