@@ -30,7 +30,7 @@ class _PickProfileImageState extends State<PickProfileImage> {
     });
   }
 
-  void storeImage() async {
+  Future<void> storeImage() async {
     final currentUser = _auth.getCurrentuser();
     Reference storageRef =
         _storage.ref().child('user_images').child('${currentUser!.uid}.jpg');
@@ -38,8 +38,8 @@ class _PickProfileImageState extends State<PickProfileImage> {
     final imageUrl = await storageRef.getDownloadURL();
   }
 
-  void goToMainPage() {
-    storeImage();
+  void goToMainPage() async {
+    await storeImage(); //ovde se ceka dok se slika ne uploaduje
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const FirstPage()));
   }

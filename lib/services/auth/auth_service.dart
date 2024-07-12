@@ -29,6 +29,26 @@ class AuthService {
     return _auth.currentUser;
   }
 
+  Future<List<Map<String, dynamic>>> getAllUsers() async {
+    List<Map<String, dynamic>> users = [];
+    try {
+      QuerySnapshot querySnapshot = await _firestore
+          .collection("Users")
+          .get(); //pazi ovde bilo ti je malo pocetno slovo
+      print(
+          'QuerySnapshot: ${querySnapshot.docs.length} documents found'); // Debugging statement
+
+      for (var userDoc in querySnapshot.docs) {
+        Map<String, dynamic> userData = userDoc.data() as Map<String, dynamic>;
+        users.add(userData);
+        print('User Data: $userData'); // Debugging statement
+      }
+    } catch (e) {
+      print('Error fetching users: $e'); // Debugging statement
+    }
+    return users;
+  }
+
   //sign up
   Future<UserCredential> signUpWithEmailPassword(
       String email, String password) async {
