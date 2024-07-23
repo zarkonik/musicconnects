@@ -79,7 +79,7 @@ class _ChannelScreenState extends State<ChannelScreen> {
       return;
     }
 
-    final apiKey = 'AIzaSyBLLgU6AYZmcyL-093rk42rB5Vnu1sLo44';
+    final apiKey = '';
     final url =
         'https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=10&q=$query&key=$apiKey';
     final response = await http.get(Uri.parse(url));
