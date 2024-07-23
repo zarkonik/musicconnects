@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_projects/pages/channel_page.dart';
 import 'package:flutter_projects/services/auth/auth_gate.dart';
 import 'package:flutter_projects/services/auth/login_or_register.dart';
 import 'package:flutter_projects/firebase_options.dart';
@@ -48,7 +49,14 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   var currentIndex = 0;
 
-  final screens = [Nearby(), Encounters(), Likes(), Chat(), Profile()];
+  final screens = [
+    Nearby(),
+    Encounters(),
+    ChannelScreen(),
+    Likes(),
+    Chat(),
+    Profile()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +80,10 @@ class _FirstPageState extends State<FirstPage> {
           BottomNavigationBarItem(
             label: "Encounters",
             icon: Icon(Icons.style),
+          ),
+          BottomNavigationBarItem(
+            label: "Channels",
+            icon: Icon(Icons.music_note_rounded),
           ),
           BottomNavigationBarItem(
             label: "Likes",

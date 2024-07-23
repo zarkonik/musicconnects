@@ -13,6 +13,7 @@ class PickProfileImage extends StatefulWidget {
 }
 
 class _PickProfileImageState extends State<PickProfileImage> {
+  bool isLoading = false;
   final _auth = AuthService();
   File? _pickedImageFile;
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -35,10 +36,15 @@ class _PickProfileImageState extends State<PickProfileImage> {
     Reference storageRef =
         _storage.ref().child('user_images').child('${currentUser!.uid}.jpg');
     await storageRef.putFile(_pickedImageFile!);
-    final imageUrl = await storageRef.getDownloadURL();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   void goToMainPage() async {
+    setState(() {
+      isLoading = true;
+    });
     await storeImage(); //ovde se ceka dok se slika ne uploaduje
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const FirstPage()));
@@ -66,18 +72,20 @@ class _PickProfileImageState extends State<PickProfileImage> {
                     height: screenHeight / 2 + 100,
                     fit: BoxFit.cover,
                   )
-                : Text("No image selected"),
+                : const Text("No image selected"),
             TextButton.icon(
               onPressed: _pickImage,
-              icon: Icon(Icons.image),
+              icon: const Icon(Icons.image),
               label: Text(
-                'Add Image 123',
+                'Add Image',
                 style: TextStyle(color: Theme.of(context).colorScheme.primary),
               ),
             ),
-            GestureDetector(
-              onTap: goToMainPage,
-              child: const Text("Next"),
+            Column(
+              children: [
+                GestureDetector(onTap: goToMainPage, child: const Text("Next")),
+                if (isLoading) const CircularProgressIndicator(),
+              ],
             ),
           ],
         ),
